@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MagnificationGestureBootcamp: View {
     
-    @State var currentAmount: CGFloat = 0
+    @State var currentAmount: CGFloat = 1
     @State var lastAmount: CGFloat = 0
     
     
@@ -27,15 +27,16 @@ struct MagnificationGestureBootcamp: View {
             
             Rectangle()
                 .frame(height: 300)
-                .scaleEffect(1 + currentAmount)
+                .scaleEffect(currentAmount)
                 .gesture(
                     MagnificationGesture()
                         .onChanged({ value in
-                            currentAmount = value - 1
+                            currentAmount = value
+                            print(value)
                         })
                         .onEnded({ value in
                             withAnimation(.spring()) {
-                                currentAmount = 0
+                                currentAmount = 1
                             }
                         })
                 )
